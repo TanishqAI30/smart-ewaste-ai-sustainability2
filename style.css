@@ -112,12 +112,13 @@ form label, .scanner-box label {
     font-weight: 600;
 }
 
-form select, form input, input[type="text"], .scanner-box select {
+form select, form input, input[type="text"], .scanner-box input[type="file"], .scanner-box select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-bottom: 15px;
+    background: #fff;
 }
 
 .btn-submit {
