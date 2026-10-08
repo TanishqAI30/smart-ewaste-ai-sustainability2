@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart E-Waste Management & Sustainability Analysis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <h1>🌿 EcoCycle: Smart E-Waste AI</h1>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#scanner">AI Scanner</a>
+                <a href="#calculator">Calculator</a>
+                <a href="#dropoff">Hubs & Credits</a>
+                <a href="#analytics">Analytics</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h2>Next-Gen E-Waste Intelligence & Campus Sustainability</h2>
+            <p>AI-powered sorting, real-time carbon tracking, and area green credit scores for a sustainable future.</p>
+            <a href="#scanner" class="btn">Try AI Scanner</a>
+        </div>
+    </section>
+
+    <!-- Main Content Container -->
+    <div class="container main-grid">
+        
+        <!-- Feature 1: AI Scanning & Segregation Simulator -->
+        <section id="scanner" class="card full-width">
+            <h3>🤖 AI E-Waste Classification & Hazard Scanner</h3>
+            <p>Simulate our machine learning pipeline to instantly classify components, check reusability, and detect hazards[cite: 3].</p>
+            
+            <div class="scanner-box">
+                <label for="sampleItem">Select or Upload E-Waste Item:</label>
+                <select id="sampleItem">
+                    <option value="pcb">Motherboard / PCB (Printed Circuit Board)</option>
+                    <option value="li ion">Lithium-Ion Smartphone Battery</option>
+                    <option value="cables">Copper Wiring & Power Cables</option>
+                    <option value="crt">Old CRT Monitor / Glass Display</option>
+                </select>
+                <button onclick="runAIScanner()" class="btn-submit">Run AI Classification Model</button>
+            </div>
+
+            <div id="scanResult" class="hidden scan-result-card">
+                <h4>Analysis Results:</h4>
+                <div id="scanDetails"></div>
+            </div>
+        </section>
+
+        <!-- Feature 2: E-Waste Carbon & Impact Calculator -->
+        <section id="calculator" class="card">
+            <h3>♻️ Carbon Footprint Calculator</h3>
+            <p>Estimate CO2 emissions saved through proper recycling[cite: 3].</p>
+            
+            <form id="eWasteForm">
+                <label for="deviceType">Select Device Type:</label>
+                <select id="deviceType" required>
+                    <option value="smartphone">Smartphone (~55 kg CO2)</option>
+                    <option value="laptop">Laptop (~200 kg CO2)</option>
+                    <option value="desktop">Desktop PC (~400 kg CO2)</option>
+                    <option value="television">Television (~300 kg CO2)</option>
+                </select>
+
+                <label for="deviceCount">Quantity:</label>
+                <input type="number" id="deviceCount" min="1" value="1" required>
+
+                <button type="submit" class="btn-submit">Calculate Impact</button>
+            </form>
+
+            <div id="resultBox" class="hidden">
+                <h4>Impact Report:</h4>
+                <p id="outputText"></p>
+            </div>
+        </section>
+
+        <!-- Feature 3: Campus / City Drop-off Hubs -->
+        <section id="dropoff" class="card">
+            <h3>📍 E-Waste Collection Hubs</h3>
+            <p>Locate verified campus & city recycling drop-off stations.</p>
+            <input type="text" id="citySearch" placeholder="Enter Area/Campus (e.g., CSIT Block, Main Gate)...">
+            <button onclick="searchHubs()" class="btn-submit">Locate Hubs</button>
+            <ul id="hubList">
+                <li><em>Search an area to view nearby collection points.</em></li>
+            </ul>
+        </section>
+
+    </div>
+
+    <!-- Feature 4: Gen-Z Vibe "EcoScore" Area Credit Leaderboard -->
+    <section class="container card full-width">
+        <h3>🔥 Campus Area "EcoScore" & Green Credits</h3>
+        <p>Live sustainability leaderboard tracking waste disposal compliance and green credits across zones.</p>
+        
+        <table class="leaderboard-table">
+            <thead>
+                <tr>
+                    <th>Area / Zone</th>
+                    <th>Disposal Compliance</th>
+                    <th>Hazard Risk</th>
+                    <th>EcoScore (Gen-Z Vibe)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>CSIT School Block</td>
+                    <td>94%</td>
+                    <td><span class="badge low">Low (Safe)</span></td>
+                    <td><strong>98/100 🌟 S-Tier Green</strong></td>
+                </tr>
+                <tr>
+                    <td>Mechanical Workshop</td>
+                    <td>82%</td>
+                    <td><span class="badge medium">Moderate</span></td>
+                    <td><strong>85/100 ✨ Clean Vibe</strong></td>
+                </tr>
+                <tr>
+                    <td>Hostel Block A</td>
+                    <td>68%</td>
+                    <td><span class="badge high">Hazardous Risk</span></td>
+                    <td><strong>62/100 ⚠️ Needs Improvement</strong></td>
+                </tr>
+                <tr>
+                    <td>Administration Building</td>
+                    <td>90%</td>
+                    <td><span class="badge low">Low (Safe)</span></td>
+                    <td><strong>92/100 🌿 Elite Status</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Analytics Dashboard Overview -->
+    <section id="analytics" class="container card full-width">
+        <h3>📊 Analytics Dashboard & Recovery Metrics[cite: 3]</h3>
+        <div class="stats-container">
+            <div class="stat-box">
+                <h4>12,450 kg</h4>
+                <p>E-Waste Safely Processed</p>
+            </div>
+            <div class="stat-box">
+                <h4>85%</h4>
+                <p>Material Recovery Rate</p>
+            </div>
+            <div class="stat-box">
+                <h4>3,200 tons</h4>
+                <p>CO2 Emissions Avoided</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Smart E-Waste Management Project Team | Symbiosis Skills and Professional University[cite: 3]</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
