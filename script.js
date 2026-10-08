@@ -1,49 +1,55 @@
-// AI E-Waste Scanner & Segregation Logic
+// AI E-Waste Scanner & Segregation Logic with Camera Upload Support
 function runAIScanner() {
-    const item = document.getElementById('sampleItem').value;
+    const fileInput = document.getElementById('imageUpload');
     const resultCard = document.getElementById('scanResult');
     const scanDetails = document.getElementById('scanDetails');
     
-    resultCard.classList.remove('hidden');
-    
-    let classification = "";
-    let hazardLevel = "";
-    let reusable = "";
-    let recoveryValue = "";
-
-    switch(item) {
-        case 'pcb':
-            classification = "Printed Circuit Board (PCB)";
-            hazardLevel = "Moderate (Contains trace heavy metals)";
-            reusable = "Yes (Precious metal extraction)";
-            recoveryValue = "High (Gold, Silver, Palladium)";
-            break;
-        case 'li ion':
-            classification = "Lithium-Ion Battery Cell";
-            hazardLevel = "⚠️ HIGH HAZARD (Fire / Explosion risk)";
-            reusable = "No (Requires specialized chemical neutralization)";
-            recoveryValue = "Medium (Lithium, Cobalt, Nickel)";
-            break;
-        case 'cables':
-            classification = "Copper Wiring / Power Cables";
-            hazardLevel = "Low (Safe to handle)";
-            reusable = "Yes (Stripping & wire recycling)";
-            recoveryValue = "High (Pure Copper)";
-            break;
-        case 'crt':
-            classification = "CRT Glass Display Screen";
-            hazardLevel = "⚠️ HIGH HAZARD (Contains lead & toxic phosphor)";
-            reusable = "No (Specialized lead-glass recycling only)";
-            recoveryValue = "Low";
-            break;
+    // Check if the user selected or captured an image
+    if (fileInput.files.length === 0) {
+        alert("Please take a picture or upload an e-waste image first!");
+        return;
     }
 
+    const fileName = fileInput.files[0].name;
+    resultCard.classList.remove('hidden');
+    
+    // Simulated categories for AI ML pipeline demonstration
+    const categories = [
+        {
+            name: "Printed Circuit Board (PCB)",
+            hazard: "Moderate (Contains trace heavy metals)",
+            reusable: "Yes (Precious metal extraction)",
+            value: "High (Gold, Silver, Palladium)"
+        },
+        {
+            name: "Lithium-Ion Battery Cell",
+            hazard: "⚠️ HIGH HAZARD (Fire / Explosion risk)",
+            reusable: "No (Requires specialized chemical neutralization)",
+            value: "Medium (Lithium, Cobalt, Nickel)"
+        },
+        {
+            name: "Copper Wiring / Power Cables",
+            hazard: "Low (Safe to handle)",
+            reusable: "Yes (Stripping & wire recycling)",
+            value: "High (Pure Copper)"
+        },
+        {
+            name: "CRT Glass Display Screen",
+            hazard: "⚠️ HIGH HAZARD (Contains lead & toxic phosphor)",
+            reusable: "No (Specialized lead-glass recycling only)",
+            value: "Low"
+        }
+    ];
+
+    const detected = categories[Math.floor(Math.random() * categories.length)];
+
     scanDetails.innerHTML = `
-        <p><strong>Detected Category:</strong> ${classification}</p>
-        <p><strong>Hazard Assessment:</strong> ${hazardLevel}</p>
-        <p><strong>Reusability Status:</strong> ${reusable}</p>
-        <p><strong>Resource Recovery Value:</strong> ${recoveryValue}</p>
-        <p style="margin-top:10px; color:#1b5e20;"><em>✨ AI Recommendation: Routed to specialized campus disposal bin with high priority.</em></p>
+        <p><strong>Uploaded File / Photo:</strong> <code>${fileName}</code></p>
+        <p><strong>AI Detected Category:</strong> ${detected.name}</p>
+        <p><strong>Hazard Assessment:</strong> ${detected.hazard}</p>
+        <p><strong>Reusability Status:</strong> ${detected.reusable}</p>
+        <p><strong>Resource Recovery Value:</strong> ${detected.value}</p>
+        <p style="margin-top:10px; color:#1b5e20;"><em>✨ AI Classification Complete: Routed to specialized campus disposal bin with priority handling.</em></p>
     `;
 }
 
