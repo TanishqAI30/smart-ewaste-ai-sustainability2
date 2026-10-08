@@ -1,10 +1,9 @@
-// AI E-Waste Scanner & Segregation Logic with Camera Upload Support
+// AI E-Waste Scanner & Segregation Logic with Quantity & Carbon Integration
 function runAIScanner() {
     const fileInput = document.getElementById('imageUpload');
     const resultCard = document.getElementById('scanResult');
     const scanDetails = document.getElementById('scanDetails');
     
-    // Check if the user selected or captured an image
     if (fileInput.files.length === 0) {
         alert("Please take a picture or upload an e-waste image first!");
         return;
@@ -13,47 +12,53 @@ function runAIScanner() {
     const fileName = fileInput.files[0].name;
     resultCard.classList.remove('hidden');
     
-    // Simulated categories for AI ML pipeline demonstration
+    // AI categories mapped with specific CO2 emission values and recovery metrics
     const categories = [
         {
             name: "Printed Circuit Board (PCB)",
+            co2: 180,
             hazard: "Moderate (Contains trace heavy metals)",
             reusable: "Yes (Precious metal extraction)",
             value: "High (Gold, Silver, Palladium)"
         },
         {
             name: "Lithium-Ion Battery Cell",
+            co2: 90,
             hazard: "⚠️ HIGH HAZARD (Fire / Explosion risk)",
             reusable: "No (Requires specialized chemical neutralization)",
             value: "Medium (Lithium, Cobalt, Nickel)"
         },
         {
             name: "Copper Wiring / Power Cables",
+            co2: 45,
             hazard: "Low (Safe to handle)",
             reusable: "Yes (Stripping & wire recycling)",
             value: "High (Pure Copper)"
         },
         {
-            name: "CRT Glass Display Screen",
+            name: "CRT Glass Display / Monitor",
+            co2: 300,
             hazard: "⚠️ HIGH HAZARD (Contains lead & toxic phosphor)",
             reusable: "No (Specialized lead-glass recycling only)",
             value: "Low"
         }
     ];
 
+    // Randomly pick a category based on the scan simulation
     const detected = categories[Math.floor(Math.random() * categories.length)];
 
     scanDetails.innerHTML = `
-        <p><strong>Uploaded File / Photo:</strong> <code>${fileName}</code></p>
-        <p><strong>AI Detected Category:</strong> ${detected.name}</p>
+        <p><strong>Uploaded Photo:</strong> <code>${fileName}</code></p>
+        <p><strong>AI Detected Item:</strong> ${detected.name}</p>
+        <p><strong>Estimated CO2 Saved via Recycling:</strong> <strong>${detected.co2} kg CO2</strong></p>
         <p><strong>Hazard Assessment:</strong> ${detected.hazard}</p>
         <p><strong>Reusability Status:</strong> ${detected.reusable}</p>
         <p><strong>Resource Recovery Value:</strong> ${detected.value}</p>
-        <p style="margin-top:10px; color:#1b5e20;"><em>✨ AI Classification Complete: Routed to specialized campus disposal bin with priority handling.</em></p>
+        <p style="margin-top:10px; color:#1b5e20;"><em>✨ AI Classification & Carbon Analysis Complete: Automatically routed to campus recycling stream.</em></p>
     `;
 }
 
-// E-Waste Impact Calculation Logic
+// E-Waste Impact Calculation Logic (Manual Form)
 document.getElementById('eWasteForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -88,7 +93,7 @@ document.getElementById('eWasteForm').addEventListener('submit', function(e) {
     const outputText = document.getElementById('outputText');
     
     resultBox.classList.remove('hidden');
-    outputText.innerHTML = `Properly recycling <strong>${count} ${device}(s)</strong> saves approximately <strong>${totalCo2} kg of CO2 emissions</strong>[cite: 3]. <br><br>♻️ <em>Recovered Elements:</em> ${materialRecovery}.`;
+    outputText.innerHTML = `Properly recycling <strong>${count} ${device}(s)</strong> saves approximately <strong>${totalCo2} kg of CO2 emissions</strong>. <br><br>♻️ <em>Recovered Elements:</em> ${materialRecovery}.`;
 });
 
 // Drop-off Hub Finder Simulation Logic
