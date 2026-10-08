@@ -34,19 +34,14 @@
     <!-- Main Content Container -->
     <div class="container main-grid">
         
-        <!-- Feature 1: AI Scanning & Segregation Simulator -->
+        <!-- Feature 1: AI Scanning & Segregation with Camera Support -->
         <section id="scanner" class="card full-width">
             <h3>🤖 AI E-Waste Classification & Hazard Scanner</h3>
-            <p>Simulate our machine learning pipeline to instantly classify components, check reusability, and detect hazards[cite: 3].</p>
+            <p>Upload a photo or capture an image of your e-waste item using your camera to run our machine learning classification pipeline[cite: 3].</p>
             
             <div class="scanner-box">
-                <label for="sampleItem">Select or Upload E-Waste Item:</label>
-                <select id="sampleItem">
-                    <option value="pcb">Motherboard / PCB (Printed Circuit Board)</option>
-                    <option value="li ion">Lithium-Ion Smartphone Battery</option>
-                    <option value="cables">Copper Wiring & Power Cables</option>
-                    <option value="crt">Old CRT Monitor / Glass Display</option>
-                </select>
+                <label for="imageUpload">Upload or Capture E-Waste Photo:</label>
+                <input type="file" id="imageUpload" accept="image/*" capture="environment">
                 <button onclick="runAIScanner()" class="btn-submit">Run AI Classification Model</button>
             </div>
 
